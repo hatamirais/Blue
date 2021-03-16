@@ -1,13 +1,16 @@
-TryHackMe | Blue Writeup
+# TryHackMe | Blue Writeup
 
-Platform		: Kali Linux
-Language		: English
-Software used 	: Nmap 7.91
-				  Metasploit v6.0.33-dev- 
+- Platform		: Kali Linux
+-  Language		: English
+-  Software used	:
+	- Nmap 7.91
+	- Metasploit v6.0.33-dev- 
 
-This room is about Eternal Blue Exploit that has been discovered in 2017 and this exploit is used later by the cyber criminal to make WannaCrypt Ransomware
+This room is about EternalBlue exploit that has been discovered in 2017 and this exploit is used later by the cyber criminal to make WannaCry Ransomware.
 
-# Task 1 Recon
+---
+
+## Task 1 Recon
 
 1. Scan the machine
 
@@ -21,13 +24,13 @@ This room is about Eternal Blue Exploit that has been discovered in 2017 and thi
 
 ` ¯\_(ツ)_/¯ `
 
-# Task 2 Gain Access
+## Task 2 Gain Access
 
 `Hint` is enough, Im write this writeup as a guide not an answer. If you still confused, redo the [Metasploit room](https://tryhackme.com/room/rpmetasploit)
 
 Dont know if this a fix, but IF you keep `fail` when running the exploit, try change `LHOST` to VPN IP connected to TryHackMe openvpn
 
-# Task 3 Escalate
+## Task 3 Escalate
 
 1. If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected) 
 
@@ -65,7 +68,7 @@ There are a lot of process running by user `NT AUTHORITY\SYSTEM`, pick one. I ch
 8. Migrate to this process using the 'migrate PROCESS_ID' command where the process id is the one you just wrote down in the previous step. This may take several attempts, migrating processes is not very stable. If this fails, you may need to re-run the conversion process or reboot the machine and start once again. If this happens, try a different process next time. 
 
 
-# Task 4 Cracking
+## Task 4 Cracking
 
 1. Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user? 
 
@@ -74,7 +77,7 @@ There are a lot of process running by user `NT AUTHORITY\SYSTEM`, pick one. I ch
 
 The hash is consist of `NAME:NUMBER:1HASH:2HASH:::`. Use [Crackstation](https://crackstation.net/) to crack the password. Not found? Which Hash to pick? Try use each hash independently.
 
-# Task 5 Find Flags!
+## Task 5 Find Flags!
 
 1. Flag1? This flag can be found at the system root. 
 
@@ -89,3 +92,8 @@ In bash we use `cat` to print what in the file, in shell use `type`
 3. flag3? This flag can be found in an excellent location to loot. After all, Administrators usually have pretty interesting things saved. 
 
 The answer for both number 2 and 3 can be found quickly if we can search file with name flag and formated in txt. Google `how to find files in windows terminal`
+
+---
+
+> TO READ:
+> EternalBlue relation to WannaCry: [Avast](https://www.avast.com/c-eternalblue)
